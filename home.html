@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <script>
+    // Check if the current URL is the root of the domain
+    if (window.location.pathname === '/') {
+      // Redirect to 'index.html'
+      window.location.pathname = '/index.html';
+    }
+  </script>
+</head>
 <body>
-
-<h1>Mug Exchange</h1>
-    <script>
-        if (window.location.pathname === '/') {
-            window.location.pathname = '/home.html';
-        }
-    </script>
-<p>If you are not redirected automatically, <a href="home.html">click here</a>.</p>
-
+  <p>If you are not redirected automatically, <a href="index.html">click here</a>.</p>
 </body>
 </html>
