@@ -1,3 +1,4 @@
+/*
 import { Pool } from 'pg';
 
 const pool = new Pool({
@@ -30,3 +31,4 @@ export default async function Page() {
     </div>
   );
 }
+  */
