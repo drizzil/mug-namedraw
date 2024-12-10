@@ -4,7 +4,9 @@
 
 <h1>Mug Exchange</h1>
     <script>
-        src = "js/start.js"
+        if (window.location.pathname === '/') {
+            window.location.pathname = '/index.html';
+        }
     </script>
 <p>If you are not redirected automatically, <a href="home.html">click here</a>.</p>
 
