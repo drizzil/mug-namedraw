@@ -10,26 +10,39 @@ const pool = new Pool({
 async function getData() {
   const client = await pool.connect();
   try {
-    const { rows } = await client.query('SELECT * FROM posts');
+    console.log('Connecting to the database...');
+    const { rows } = await client.query('SELECT * FROM name-store');
+    console.log('Data retrieved:', rows);
     return rows;
   } catch (err) {
     console.error('Database query error:', err);
-    throw err; // or return a fallback value
+    return []; // Return an empty array if there’s an error
   } finally {
     client.release();
+    console.log('Database connection released.');
   }
 }
 
 export default async function Page() {
-  const data = await getData();
+  let data = [];
+  try {
+    data = await getData();
+  } catch (err) {
+    console.error('Error in Page component:', err);
+  }
+
   return (
     <div>
-      {data.map((post, index) => (
-        <div key={index}>
-          <h2>{post.title}</h2>
-          <p>{post.content}</p>
-        </div>
-      ))}
+      {data.length > 0 ? (
+        data.map((post, index) => (
+          <div key={index}>
+            <h2>{post.title}</h2>
+            <p>{post.content}</p>
+          </div>
+        ))
+      ) : (
+        <div>No data available or an error occurred.</div>
+      )}
     </div>
   );
 }
