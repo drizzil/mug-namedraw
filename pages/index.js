@@ -23,14 +23,21 @@ async function getData() {
   }
 }
 
-export default async function Page() {
+export async function getServerSideProps() {
   let data = [];
   try {
     data = await getData();
   } catch (err) {
-    console.error('Error in Page component:', err);
+    console.error('Error fetching data:', err);
   }
+  return {
+    props: {
+      data,
+    },
+  };
+}
 
+export default function Page({ data }) {
   return (
     <div>
       {data.length > 0 ? (
