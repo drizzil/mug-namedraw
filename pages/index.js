@@ -11,7 +11,7 @@ async function getData() {
   const client = await pool.connect();
   try {
     console.log('Connecting to the database...');
-    const { rows } = await client.query('SELECT * FROM name-store');
+    const { rows } = await client.query('SELECT * FROM nameselection');
     console.log('Data retrieved:', rows);
     return rows;
   } catch (err) {
