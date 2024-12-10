@@ -10,8 +10,11 @@ const pool = new Pool({
 async function getData() {
   const client = await pool.connect();
   try {
-    const { rows } = await client.query('SELECT * FROM nameselection');
+    const { rows } = await client.query('SELECT * FROM posts');
     return rows;
+  } catch (err) {
+    console.error('Database query error:', err);
+    throw err; // or return a fallback value
   } finally {
     client.release();
   }
