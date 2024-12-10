@@ -7,11 +7,13 @@
   <script>
     if (window.location.pathname === '/') {
       window.location.pathname = '/index.html';
-      console.log('This is a message from the JavaScript file.');
     }
   </script>
   <script> 
+    window.onload = function() {
+    alert('Page is loaded and script is running!');
     console.log('This is a message from the JavaScript file.');
+  };
   </script>
 </head>
 <body>
