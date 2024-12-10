@@ -7,13 +7,14 @@
   <script>
     if (window.location.pathname === '/') {
       window.location.pathname = '/index.html';
+    } else {
+      // If already on index.html, hide the redirect message
+      document.getElementById("redirectMessage").style.display = 'none';
     }
-    src = "js/start.js";
   </script>
 </head>
 <body>
-  <p> 
-    If you are not redirected automatically, <a href="index.html">click here</a>.
-  </p>
+  <!-- Redirect message that will disappear if the user is already on the correct page -->
+  <p id="redirectMessage">If you are not redirected automatically, <a href="index.html">click here</a>.</p>
 </body>
 </html>
