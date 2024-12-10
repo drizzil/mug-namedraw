@@ -1,1 +1,1 @@
-console.log("javascript");
+console.log(home.html);
