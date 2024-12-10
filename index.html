@@ -3,18 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecting...</title>
-  <script>
-    if (window.location.pathname === '/') {
-      window.location.pathname = '/index.html';
-    } else {
-      // If already on index.html, hide the redirect message
-      document.getElementById("redirectMessage").style.display = 'none';
-    }
-  </script>
+  <title>Neon PostgreSQL Data</title>
 </head>
 <body>
-  <!-- Redirect message that will disappear if the user is already on the correct page -->
-  <p id="redirectMessage">If you are not redirected automatically, <a href="index.html">click here</a>.</p>
+  <h1>Data from Neon PostgreSQL</h1>
+  <ul id="data-list">
+    <!-- Data will be dynamically inserted here -->
+  </ul>
+
+  <script>
+    // Function to fetch data from the Vercel API endpoint
+    async function fetchData() {
+      try {
+        const response = await fetch('/api/getData');
+        const data = await response.json();
+
+        // Get the data-list element
+        const dataList = document.getElementById('data-list');
+
+        // Clear any previous content
+        dataList.innerHTML = '';
+
+        // Loop through the data and append list items
+        data.forEach(item => {
+          const listItem = document.createElement('li');
+          listItem.textContent = `ID: ${item.id}, Name: ${item.name}`; // Adjust based on your table columns
+          dataList.appendChild(listItem);
+        });
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    // Call the fetchData function when the page loads
+    window.onload = fetchData;
+  </script>
 </body>
 </html>
